@@ -4,10 +4,7 @@ var player, shooterImg, shooter_shooting;
 
 function preload(){
   
-  shooterImg = loadImage("assets/shooter_2.png")
-  shooter_shooting = loadImage("assets/shooter_3.png")
-
-  bgImg = loadImage("assets/bg.jpeg")
+  //Cargando imágenes del jugador y fondo
 
 }
 
@@ -16,18 +13,15 @@ function setup() {
   
   createCanvas(windowWidth,windowHeight);
 
-  //adding the background image
+  //añadiendo background image
   bg = createSprite(displayWidth/2-20,displayHeight/2-40,20,20)
-bg.addImage(bgImg)
-bg.scale = 1.1
   
+  
+//creando el sprite jugador
+  player = createSprite(displayWidth-1150, displayHeight-300, 50, 50);
 
-//creating the player sprite
-player = createSprite(displayWidth-1150, displayHeight-300, 50, 50);
- player.addImage(shooterImg)
-   player.scale = 0.3
-   player.debug = true
-   player.setCollider("rectangle",0,0,300,300)
+  //agregar colissionador y debug true
+
 
 
 }
@@ -35,30 +29,16 @@ player = createSprite(displayWidth-1150, displayHeight-300, 50, 50);
 function draw() {
   background(0); 
 
+  //mover al jugador arriba y abajo y hacer el juego compatible con pantallas móviles usando "touches"
 
 
 
-  //moving the player up and down and making the game mobile compatible using touches
-if(keyDown("UP_ARROW")||touches.length>0){
-  player.y = player.y-30
-}
-if(keyDown("DOWN_ARROW")||touches.length>0){
- player.y = player.y+30
-}
+  //cambiar la imagen del jugador cuando se presiona la tecla espacio
+  //volver al jugador a su posicion original cuando se suelta la tecla espacio
 
 
-//release bullets and change the image of shooter to shooting position when space is pressed
-if(keyWentDown("space")){
- 
-  player.addImage(shooter_shooting)
- 
-}
 
-//player goes back to original standing image once we stop pressing the space bar
-else if(keyWentUp("space")){
-  player.addImage(shooterImg)
-}
-
-drawSprites();
+  //mostrar sprites
+  
 
 }
